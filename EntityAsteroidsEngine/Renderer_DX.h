@@ -6,12 +6,19 @@
 #include <d3dx10.h>
 #include <DirectXMath.h>
 #include "Renderer.h"
+#include "CameraComponent.h"
 
-typedef struct UniformBuffer
+
+typedef struct ConstantBuffer
 {
 	DirectX::XMFLOAT4X4 MVM;
+	DirectX::XMFLOAT4X4 mWorld;
+	DirectX::XMFLOAT4X4 mView;
+	DirectX::XMFLOAT4X4 mProj;
+	DirectX::XMFLOAT4 mCameraPosition;
+	DirectX::XMFLOAT4 mColour;
 	DirectX::XMFLOAT4 Colour;
-} UniformBuffer;
+}ConstantBuffer;
 
 // DirectX Device & Context
 class Renderer_DX :
@@ -26,10 +33,9 @@ protected:
 	ID3D11InputLayout*		_layout;				// the pointer to the input layout
 	ID3D11VertexShader*		_vertexShader;			// the pointer to the vertex shader
 	ID3D11PixelShader*		_pixelShader;			// the pointer to the pixel shader
-	ID3D11Buffer*			_uniformBuffer;			// Stores the MVM and colour
-
+	ID3D11Buffer*			_ConstantBuffer;			// Stores the MVM and colour
 	HWND					_hWnd;					// Window handle
-
+	ConstantBuffer mCB{};
 	// Structors
 public:
 	Renderer_DX(HWND hWnd);
@@ -48,6 +54,7 @@ public:
 	virtual void ClearScreen();
 	virtual void Destroy();
 	virtual void Draw(const Mesh* mesh, glm::mat4 MVM, const Colour& colour);
+	void SetViewProj(CameraComponent* camera);
 	virtual void Initialise(int width, int height);
 	virtual void SwapBuffers();
 

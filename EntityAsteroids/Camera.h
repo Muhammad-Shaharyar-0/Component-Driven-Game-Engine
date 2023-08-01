@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "CameraComponent.h"
+
 class Camera :public GameObject
 {
 
@@ -8,7 +9,7 @@ class Camera :public GameObject
 public:
 
 	CameraComponent* _camera;
-
+	int mCameraID;
 	// Data
 protected:
 

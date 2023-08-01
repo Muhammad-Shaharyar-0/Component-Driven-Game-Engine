@@ -4,6 +4,8 @@
 #include "Mesh.h"
 #include "GameObject.h"
 
+
+using namespace DirectX;
 /******************************************************************************************************************/
 
 Renderer_DX::Renderer_DX(HWND hWnd)
@@ -39,9 +41,9 @@ void Renderer_DX::Destroy()
 	_device->Release();
 	_context->Release();
 
-	if (_uniformBuffer)	
+	if (_ConstantBuffer)	
 	{
-		_uniformBuffer->Release();
+		_ConstantBuffer->Release();
 	}
 }
 
@@ -51,22 +53,51 @@ void Renderer_DX::Draw(const Mesh* mesh, glm::mat4 MVM, const Colour& colour)
 {
 	MVM = glm::transpose(MVM);
 
-	UniformBuffer uniforms;
-	memcpy(&uniforms.MVM, &MVM[0][0], sizeof(DirectX::XMFLOAT4X4));
-	uniforms.Colour.x = colour.mColour.X;
-	uniforms.Colour.y = colour.mColour.Y;
-	uniforms.Colour.z = colour.mColour.Z;
-	uniforms.Colour.w = colour.mColour.W;
+	
+	memcpy(&mCB.MVM, &MVM[0][0], sizeof(DirectX::XMFLOAT4X4));
+	memcpy(&mCB.mWorld, &MVM[0][0], sizeof(DirectX::XMFLOAT4X4));
+	mCB.Colour.x = colour.mColour.X;
+	mCB.Colour.y = colour.mColour.Y;
+	mCB.Colour.z = colour.mColour.Z;
+	mCB.Colour.w = colour.mColour.W;
 	// Need to update uniform buffer here
 	D3D11_MAPPED_SUBRESOURCE ms;
-	_context->Map(_uniformBuffer, NULL, D3D11_MAP_WRITE_DISCARD, NULL, &ms);		// map the buffer
-	memcpy(ms.pData, &uniforms, sizeof(UniformBuffer));								// copy the data
-	_context->Unmap(_uniformBuffer, NULL);											// unmap the buffer
-	_context->VSSetConstantBuffers(0, 1, &_uniformBuffer);
-	_context->PSSetConstantBuffers(0, 1, &_uniformBuffer);
+	_context->Map(_ConstantBuffer, NULL, D3D11_MAP_WRITE_DISCARD, NULL, &ms);		// map the buffer
+	memcpy(ms.pData, &mCB, sizeof(ConstantBuffer));								// copy the data
+	_context->Unmap(_ConstantBuffer, NULL);											// unmap the buffer
+	_context->VSSetConstantBuffers(0, 1, &_ConstantBuffer);
+	_context->PSSetConstantBuffers(0, 1, &_ConstantBuffer);
 
 	mesh->GetVBO()->Draw(this);
 }
+
+
+void Renderer_DX::SetViewProj(CameraComponent* camera)
+{
+	//view
+	
+	//const XMFLOAT4 position(reinterpret_cast<float*>(&(camera->GetGameObject()->GetPosition())));
+	//mCB.mCameraPosition = XMFLOAT4(reinterpret_cast<float*>(&(camera->GetGameObject()->GetPosition())));
+	Datastructers::Vector4 vec = camera->GetGameObject()->GetPosition();
+	XMFLOAT4 position = XMFLOAT4(vec.X, vec.Y, vec.Z, vec.W);
+	mCB.mCameraPosition = position; // Assuming mCameraPosition is of type XMFLOAT4
+	const XMFLOAT4 lookAt(reinterpret_cast<float*>(&(camera->mLookAt)));
+	const XMFLOAT4 up(reinterpret_cast<float*>(&(camera->mUp)));
+
+	const XMVECTOR posVec = XMLoadFloat4(&position);
+	const XMVECTOR lookAtVec = XMLoadFloat4(&lookAt);
+	const XMVECTOR upVec = XMLoadFloat4(&up);
+
+	XMStoreFloat4x4(&mCB.mView, XMMatrixTranspose(XMMatrixLookAtLH(posVec, lookAtVec, upVec)));
+
+	//projection
+	const float fov = XMConvertToRadians(camera->mFOV);
+	const float aspectRatio = static_cast<float>(camera->mWidth) / static_cast<float>(camera->mHeight);
+	const float nearClip = camera->mNear;
+	const float farClip = camera->mFar;
+	XMStoreFloat4x4(&mCB.mProj, XMMatrixTranspose(XMMatrixPerspectiveFovLH(fov, aspectRatio, nearClip, farClip)));
+}
+
 
 /******************************************************************************************************************/
 
@@ -121,6 +152,8 @@ void Renderer_DX::Initialise(int width, int height)
 
 	viewport.TopLeftX = 0;
 	viewport.TopLeftY = 0;
+	viewport.MinDepth = 0.0f;
+	viewport.MaxDepth = 1.0f;
 	viewport.Width = width;
 	viewport.Height = height;
 
@@ -145,8 +178,8 @@ void Renderer_DX::InitialiseShaders()
 {
 	// load and compile the two shaders
 	ID3D10Blob *VS, *PS;
-	D3DX11CompileFromFile(L"shaders.hlsl", 0, 0, "VShader", "vs_4_0", 0, 0, 0, &VS, 0, 0);
-	D3DX11CompileFromFile(L"shaders.hlsl", 0, 0, "PShader", "ps_4_0", 0, 0, 0, &PS, 0, 0);
+	D3DX11CompileFromFile(L"shaders.hlsl", 0, 0, "VShader", "vs_5_0", 0, 0, 0, &VS, 0, 0);
+	D3DX11CompileFromFile(L"shaders.hlsl", 0, 0, "PShader", "ps_5_0", 0, 0, 0, &PS, 0, 0);
 
 	// encapsulate both shaders into shader objects
 	_device->CreateVertexShader(VS->GetBufferPointer(), VS->GetBufferSize(), NULL, &_vertexShader);
@@ -168,7 +201,7 @@ void Renderer_DX::InitialiseShaders()
 
 
 	// Create uniform buffer
-	UniformBuffer uniforms;
+	ConstantBuffer uniforms;
 
 	D3D11_BUFFER_DESC cbDesc;
 	cbDesc.ByteWidth = sizeof(uniforms);
@@ -185,7 +218,9 @@ void Renderer_DX::InitialiseShaders()
 	InitData.SysMemSlicePitch = 0;
 
 	// Create the buffer.
-	_device->CreateBuffer(&cbDesc, &InitData, &_uniformBuffer);
+	_device->CreateBuffer(&cbDesc, &InitData, &_ConstantBuffer);
+
+	
 }
 
 /******************************************************************************************************************/

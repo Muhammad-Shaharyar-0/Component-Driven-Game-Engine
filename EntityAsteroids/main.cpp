@@ -16,7 +16,7 @@ static const int		SCREEN_HEIGHT = 512;
 #include <d3d11.h>
 #include <d3dx11.h>
 #include <d3dx10.h>
-
+#include <ThreadManager.h>
 #include "Window_DX.h"
 
 // include the Direct3D Library file
@@ -36,6 +36,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	// Create the Game object
 	AsteroidsGame game;
 
+	auto threadManager = ThreadManager::Instance();
+	threadManager->CreateThreads();
 	// Create a Window object
 	Window_DX application(&game, SCREEN_WIDTH, SCREEN_HEIGHT, hInstance, nCmdShow);
 

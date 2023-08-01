@@ -119,6 +119,18 @@
     <ClCompile Include="InputManager_DX.cpp">
       <Filter>DirectX</Filter>
     </ClCompile>
+    <ClCompile Include="RayColliderComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadManager.cpp">
+      <Filter>Pattern Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Task.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -248,6 +260,18 @@
     </ClInclude>
     <ClInclude Include="InputManager_DX.h">
       <Filter>DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="RayColliderComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadManager.h">
+      <Filter>Pattern Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Task.h">
+      <Filter>Helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

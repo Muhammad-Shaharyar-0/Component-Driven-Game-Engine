@@ -9,7 +9,7 @@ class Canvas :public GameObject
 	// Constants
 public:
 
-	int size = 50;
+	int size = 25;
 	std::vector<Voxel*> _voxels;
 
 	// Data

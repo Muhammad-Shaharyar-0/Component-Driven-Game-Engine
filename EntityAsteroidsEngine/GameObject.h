@@ -60,6 +60,9 @@ public:
 	Datastructers::Vector4 GetScale()													const	{ return transform.mScale; }
 	void SetScale(Datastructers::Vector4 v)														{ transform.mScale = v; }
 
+	Datastructers::Matrix4x4 GetTransform()													const { return transform.mTransform; }
+	void SetTransform(Datastructers::Matrix4x4 v) { transform.mTransform = v; }
+
 	Datastructers::Vector4 GetPosition()												const	{ return transform.mTranslation; }
 	void SetPosition(Datastructers::Vector4 v)													{ transform.mTranslation = v; }
 

@@ -7,3 +7,4 @@
 #include "CameraControllerComponent.h"
 #include "VoxelCollisionDetectionComponent.h"
 #include "CameraComponent.h"
+#include "BoxColliderComponent.h"

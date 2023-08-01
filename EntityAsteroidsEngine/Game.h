@@ -34,13 +34,14 @@ protected:
 	bool							_quitFlag;			// Quit flag; when true, we quit
 	Renderer*						_renderer;			// The renderer
 	Window*							_window;			// The game window
-
+	
 	// Systems
 	RenderSystem					_renderSystem;		// To handle rendering
 
 	// Scene Manager
 	SceneManager					_sceneManager;
-
+	float mWidth;
+	float mHeight;
 	// Structors
 public:
 	Game();
@@ -50,7 +51,8 @@ public:
 	// Gets/sets
 public:
 
-
+	inline float Width() const { return mWidth; }
+	inline float Height() const { return mHeight; }
 	// Quit flag
 	bool GetQuitFlag()						const	{ return _quitFlag; }
 	void SetQuitFlag(bool v)						{ _quitFlag = v; }

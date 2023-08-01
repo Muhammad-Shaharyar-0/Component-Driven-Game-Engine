@@ -54,11 +54,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader.frag" />
-    <None Include="shader.vert" />
-    <None Include="shaders.hlsl" />
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="GameObjects">
       <UniqueIdentifier>{9816dac6-343c-46e8-969c-e64f41503e2c}</UniqueIdentifier>
     </Filter>
@@ -71,5 +66,10 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{13d12b4b-91ac-4b27-812d-93acca3388ff}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shader.frag" />
+    <None Include="shader.vert" />
+    <None Include="shaders.hlsl" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObjectComponent.h"
-#include "GameObject.h"
-#include "InputManager.h"
+#include "InputManager_DX.h"
+#include "CameraComponent.h"
 
 class CameraControllerComponent : public GameObjectComponent
 {
@@ -10,7 +10,10 @@ class CameraControllerComponent : public GameObjectComponent
 //#elif OPENGL
 //	std::shared_ptr<InputManager_GL> mInputManager = InputManager_GL::Instance();
 //#endif
-	std::shared_ptr<InputManager> mInputManager = InputManager::Instance();
+	std::shared_ptr<InputManager_DX> mInputManager = InputManager_DX::Instance();
+	CameraComponent* _camera;
+
+
 public:
 	CameraControllerComponent(GameObject* gob);
 

@@ -29,6 +29,8 @@ Game::~Game()
 void Game::Initialise(Window* w)
 {
 	_window = w;
+	mWidth = _window->_width;
+	mHeight = _window->_height;
 	_renderer = w->GetRenderer();
 	
 	_renderSystem.SetRenderer(_renderer);

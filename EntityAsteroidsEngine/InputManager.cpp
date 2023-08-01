@@ -3,10 +3,8 @@
 
 using namespace Datastructers;
 
-
 InputManager::InputManager()
 {
-
 }
 
 Vector4 InputManager::MouseWorld(const Matrix4x4& pView, const Matrix4x4& pProj, const float& pWidth, const float& pHeight) const
@@ -56,11 +54,4 @@ bool InputManager::KeyHeld(const KEY& pButton)
 		[&](const std::pair<KEY, KEY_STATE>& pKeyDown) {return pKeyDown.first == pButton && pKeyDown.second == KEY_STATE::KEY_HELD; });
 
 	return (key != mKeyPresses.end());
-}
-
-
-shared_ptr<InputManager> InputManager::Instance()
-{
-	static shared_ptr<InputManager> instance{ new InputManager };
-	return instance;
 }

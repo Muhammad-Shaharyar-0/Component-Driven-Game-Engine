@@ -5,6 +5,10 @@
 #include "Asteroid.h"
 #include "Message.h"
 #include "Canvas.h"
+
+
+
+using namespace Datastructers;
 /******************************************************************************************************************/
 // Structors
 /******************************************************************************************************************/
@@ -41,6 +45,12 @@ void GamePlayScene::Initialise()
 		_gameObjects.push_back(_canvas->_voxels[i]);
 	}
 	_camera = new Camera();
+	_camera->_camera->mWidth = Game::TheGame->Width();
+	_camera->_camera->mHeight = Game::TheGame->Height();
+	float aspectRatio = _camera->_camera->mWidth / _camera->_camera->mHeight;
+	_camera->SetPosition(_camera->_camera->mEye);
+	_camera->_camera->mView = LookAtLH(_camera->_camera->mEye, _camera->_camera->mLookAt, _camera->_camera->mUp);
+	_camera->_camera->mProj = ProjectionLH(1.0472f, aspectRatio, _camera->_camera->mNear, _camera->_camera->mFar);
 	_gameObjects.push_back(_camera);
 
 
@@ -84,6 +94,10 @@ void GamePlayScene::Update(double deltaTime)
 {
 	Scene::Update(deltaTime);
 
+
+	// Execute all the tasks in separate threads
+	//MyThreadManager::GetInstance().ExecuteTasks();
+
 	_physicsSystem.Process(_gameObjects, deltaTime);
 	_collisionSystem.Process(_gameObjects, deltaTime);
 
@@ -95,34 +109,25 @@ void GamePlayScene::Update(double deltaTime)
 			_gameObjects[i]->Update(deltaTime);
 		}
 	}
+	mInputManager->Update();
 
-	//// Add more asteroids if we have less than 5
-	//while (Asteroid::count < _minAsteroids)
-	//{
-	//	Asteroid* a = new Asteroid(_sceneManager->GetGame()->GetMesh("asteroid"));
-	//	a->Reset();
-	//	_gameObjects.push_back(a);
-	//	Asteroid* b = new Asteroid(_sceneManager->GetGame()->GetMesh("asteroid"));
-	//	b->Reset();
-	//	_gameObjects.push_back(b);		
-	//	_minAsteroids++;
-	//}
-
-	// Handle UFO
-	/*if (_ufoTimer < 0 && _ufo->IsAlive() == false)
+	//Left click to cast ray at mouse position
+	if (mInputManager->KeyHeld(KEY::MOUSE_BUTTON_LEFT))
 	{
-		double rnd = rand() * 1.0 / RAND_MAX;
-		_ufoTimer = rnd * (MAX_UFO_WAIT - MIN_UFO_WAIT) + MIN_UFO_WAIT;
-
-		_ufo->SetAlive(true);
-		_ufo->Reset();
+		const Vector4 dir = mInputManager->MouseWorld(_camera->_camera->mView, _camera->_camera->mProj, _camera->_camera->mWidth, _camera->_camera->mHeight);
+		/*mRayID = mEcsManager->CreateEntity();
+		const RayCollider ray{ mEye, dir };
+		mEcsManager->AddRayColliderComp(ray, mRayID);*/
+		GameObject* Ray = new GameObject("Ray");
+		Ray->SetAlive(true);
+		//Ray->AddComponent(new RayColliderComponent(Ray, _camera->_camera->mEye, dir));
+		RayColliderComponent* rc = new RayColliderComponent(Ray, _camera->_camera->mEye, dir);
+		rc->SetCollisionID(CollisionID::Ray);
+		rc->SetCollisionMatrixFlag(CollisionID::Voxel);
+		Ray->AddComponent(rc);
+		_gameObjects.push_back(Ray);
 	}
-	else if (_ufo->IsAlive() == false)
-	{
-		_ufoTimer -= deltaTime;
-	}*/
-
-	// Change game state if necessary
+	
 }
 
 /******************************************************************************************************************/
@@ -130,8 +135,12 @@ void GamePlayScene::Update(double deltaTime)
 /// Render current scene
 void GamePlayScene::Render(RenderSystem* renderer)
 {
-	glm::mat4 MVM;
-
+	if (_camera->_camera->isCameraChanged)
+	{
+		_camera->_camera->isCameraChanged = false;
+		renderer->SetCamera(_camera->_camera);
+	}
+	
 	renderer->Process(_gameObjects, 0);
 }
 

@@ -1,11 +1,8 @@
 #pragma once
-#include <memory>
 #include <vector>
 #include <string>
 #include "MatrixMath.h"
 #include "Vector2.h"
-
-using namespace std;
 
 enum class KEY
 {
@@ -42,34 +39,32 @@ enum class KEY_STATE
 
 class InputManager
 {
+protected:
 	InputManager();
 
 
-public:
 	std::vector<std::pair<KEY, KEY_STATE>> mKeyPresses;
 	Datastructers::Vector2 mMousePosition;
 	int mMouseWheelValue;
-	//virtual void SinglePressKeys() = 0;
-	//virtual void ReleasedKeys() = 0;
-	//virtual void HeldDownKeys() = 0;
+	virtual void SinglePressKeys() = 0;
+	virtual void ReleasedKeys() = 0;
+	virtual void HeldDownKeys() = 0;
 
-    virtual ~InputManager();
+public:
+	virtual ~InputManager();
+	virtual void Update() = 0;
 
+	//Singleton pattern
+	//Deleted copy constructor and assignment operator so no copies of the singleton instance can be made
+	InputManager(const InputManager&) = delete;
+	InputManager& operator=(const InputManager&) = delete;
 
-
-	//virtual void CenterCursor() = 0;
-	//virtual void CursorVisible(bool pVisible) = 0;
+	virtual void CenterCursor() = 0;
+	virtual void CursorVisible(bool pVisible) = 0;
 
 	bool KeyDown(const KEY& pButton);
 	bool KeyUp(const KEY& pButton);
 	bool KeyHeld(const KEY& pButton);
 	Datastructers::Vector4 MouseWorld(const Datastructers::Matrix4x4& pView, const Datastructers::Matrix4x4& pProj, const float& pWidth, const float& pHeight) const;
-
-//	Singleton pattern
-//Deleted copy constructor and assignment operator so no copies of the singleton instance can be made
-	InputManager(const InputManager& pResourceManager) = delete;
-	InputManager& operator=(InputManager const&) = delete;
-
-	static shared_ptr< InputManager > Instance();
 
 };

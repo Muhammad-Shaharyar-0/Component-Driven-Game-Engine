@@ -1,6 +1,7 @@
 #pragma once
 #include "System.h"
 #include <vector>
+#include "RayColliderComponent.h"
 
 class CollisionComponent;
 
@@ -24,5 +25,8 @@ public:
 public:
 	bool CollideWith(const CollisionComponent* collidee, const CollisionComponent* collider);
 	virtual void Process(std::vector<GameObject*>& list, double deltaTime);
+
+private:
+	void RayToCubeCollision(RayColliderComponent* collidiee, std::vector<GameObject*>& list);
 };
 

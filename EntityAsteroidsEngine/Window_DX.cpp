@@ -2,7 +2,7 @@
 #include "Window_DX.h"
 #include "Renderer_DX.h"
 #include "Game.h"
-
+#include "InputManager_DX.h"
 
 /******************************************************************************************************************/
 
@@ -19,7 +19,8 @@ Window_DX::Window_DX(Game* game, int width, int height, HINSTANCE hInstance, int
 
 	wc.cbSize = sizeof(WNDCLASSEX);
 	wc.style = CS_HREDRAW | CS_VREDRAW;
-	wc.lpfnWndProc = Window_DX::WindowProc;
+
+	wc.lpfnWndProc = InputManager_DX::WndProc;
 	wc.hInstance = hInstance;
 	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wc.lpszClassName = L"WindowClass";

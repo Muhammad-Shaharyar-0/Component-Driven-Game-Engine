@@ -30,48 +30,6 @@ void AsteroidsGame::Initialise(Window* w)
 	meshShip->LoadFromFile("ShipMesh.txt");
 	ResourceManager::Instance()->AddMesh("ship", meshShip);
 
-	Mesh* meshBullet = new Mesh();
-	meshBullet->LoadFromFile("BulletMesh.txt");
-	ResourceManager::Instance()->AddMesh("bullet", meshBullet);
-
-	Mesh* meshAsteroid = new Mesh();
-	for (int a = 0; a <= 360; a += 45)
-	{
-		float x = sinDeg(a) * 0.05f;
-		float y = cosDeg(a) * 0.05f;
-		meshAsteroid->AddVertex({ x, y, 0, 0.5f, 0.5f, 0.5f, 1 });
-	}
-	ResourceManager::Instance()->AddMesh("asteroid", meshAsteroid);
-
-	Mesh* meshExplosion = new Mesh();
-	meshExplosion->LoadFromFile("ExplosionMesh.txt");
-	ResourceManager::Instance()->AddMesh("explosion", meshExplosion);
-
-	Mesh* meshMissile = new Mesh();
-	meshMissile->LoadFromFile("MissileMesh.txt");
-	ResourceManager::Instance()->AddMesh("missile", meshMissile);
-
-	Mesh* meshUFO= new Mesh();
-	meshUFO->LoadFromFile("UFOMesh.txt");
-	ResourceManager::Instance()->AddMesh("ufo", meshUFO);
-
-	// Setup digit/letter meshes
-	_numbers.LoadFromFile("DigitsMesh.txt");
-	_letters.LoadFromFile("LettersMesh.txt");
-
-	for (int i = 0; i < _numbers.NumMeshes(); i++)
-	{
-		std::stringstream num;
-		num << i;
-		ResourceManager::Instance()->AddMesh(num.str(), _numbers.GetMesh(num.str()));
-	}
-	char letter = 'A';
-	for (int i = 0; i < _letters.NumMeshes(); i++)
-	{
-		std::stringstream num;
-		num << letter++;
-		ResourceManager::Instance()->AddMesh(num.str(), _letters.GetMesh(num.str()));
-	}
 
 	// Create VBOs
 	for (MeshMapIterator i = ResourceManager::Instance()->_meshes.begin();

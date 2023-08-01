@@ -4,7 +4,7 @@ CameraComponent::CameraComponent(GameObject* gob)
 	: GameObjectComponent("Camera", gob)
 {
 	mEye = Datastructers::Vector4(0.0f, 0.0f, -40.0f, 1.0f);
-	mLookAt = Datastructers::Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+	mLookAt = Datastructers::Vector4(0.0f, 0.0f, 40.0f, 1.0f);
 	mUp = Datastructers::Vector4(0.0f, 1.0f, 0.0f, 1.0f);
 	mFOV = 60;
 	mNear = 1;

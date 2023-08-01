@@ -11,7 +11,7 @@
 #pragma once
 
 #include <memory>
-#include <d3d11.h>
+
 
 
 
@@ -21,7 +21,7 @@ namespace ABI { namespace Windows { namespace UI { namespace Core { struct ICore
 #endif
 
 
-namespace MYDirectX
+namespace DirectX
 {
     class Mouse
     {
@@ -71,7 +71,7 @@ namespace MYDirectX
             ButtonState xButton1;
             ButtonState xButton2;
 
-#pragma prefast(suppress: 26495, "Reset() performs the initialization")
+            #pragma prefast(suppress: 26495, "Reset() performs the initialization")
             ButtonStateTracker() noexcept { Reset(); }
 
             void __cdecl Update(const State& state);
@@ -100,22 +100,22 @@ namespace MYDirectX
         bool __cdecl IsVisible() const;
         void __cdecl SetVisible(bool visible);
 
-#if !defined(WINAPI_FAMILY) || (WINAPI_FAMILY == WINAPI_FAMILY_DESKTOP_APP) && defined(WM_USER)
+    #if !defined(WINAPI_FAMILY) || (WINAPI_FAMILY == WINAPI_FAMILY_DESKTOP_APP) && defined(WM_USER)
         void __cdecl SetWindow(HWND window);
         static void __cdecl ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
-#endif
+    #endif
 
-#if (defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_APP)) || (defined(_XBOX_ONE) && defined(_TITLE) && (_XDK_VER >= 0x42D907D1))
+    #if (defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_APP)) || (defined(_XBOX_ONE) && defined(_TITLE) && (_XDK_VER >= 0x42D907D1))
         void __cdecl SetWindow(ABI::Windows::UI::Core::ICoreWindow* window);
-#ifdef __cplusplus_winrt
+    #ifdef __cplusplus_winrt
         void __cdecl SetWindow(Windows::UI::Core::CoreWindow^ window)
         {
             // See https://msdn.microsoft.com/en-us/library/hh755802.aspx
             SetWindow(reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(window));
         }
-#endif
+    #endif
         static void __cdecl SetDpi(float dpi);
-#endif
+    #endif
 
         // Singleton
         static Mouse& __cdecl Get();

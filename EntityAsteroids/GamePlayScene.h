@@ -3,11 +3,14 @@
 #include "WordDisplay.h"
 #include "CollisionSystem.h"
 #include "PhysicsSystem.h"
-
+#include "InputManager_DX.h"
 // Game classes
 #include "Asteroid.h"
 #include "Canvas.h"
 #include "Camera.h"
+#include "RayColliderComponent.h"
+#include "BoxColliderComponent.h"
+#include "CollisionMatrix.h"
 
 class GamePlayScene :
 	public Scene
@@ -18,7 +21,7 @@ public:
 	static const int					RESTART_DELAY = 1; // 1 sec
 	static const int					MIN_UFO_WAIT = 10; // 10 sec
 	static const int					MAX_UFO_WAIT = 30; // 30 sec
-
+	std::shared_ptr<InputManager_DX> mInputManager = InputManager_DX::Instance();
 	// Data
 protected:
 	PhysicsSystem						_physicsSystem;
@@ -30,11 +33,11 @@ protected:
 
 	Canvas*								_canvas;
 	Camera*							    _camera;
-
+	int mRayID;
 	double								_restartCounter;
 	double								_ufoTimer;
 	int									_minAsteroids;
-
+	
 	// Structors
 public:
 	GamePlayScene();

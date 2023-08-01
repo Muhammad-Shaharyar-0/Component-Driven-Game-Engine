@@ -1,11 +1,14 @@
 #pragma once
 #include "Vector4.h"
 #include "GameObjectComponent.h"
-
+#include "Matrix4x4.h"
 class CameraComponent : public GameObjectComponent
 {
 
 public:
+	Datastructers::Matrix4x4 mView;
+	Datastructers::Matrix4x4 mProj;
+
 	Datastructers::Vector4 mEye;
 	Datastructers::Vector4 mLookAt;
 	Datastructers::Vector4 mUp;
@@ -14,6 +17,9 @@ public:
 	float mNear;
 	float mFar;
 
+	float mWidth;
+	float mHeight;
+	bool isCameraChanged = true;
 
 	CameraComponent(GameObject* gob);
 	virtual ~CameraComponent();

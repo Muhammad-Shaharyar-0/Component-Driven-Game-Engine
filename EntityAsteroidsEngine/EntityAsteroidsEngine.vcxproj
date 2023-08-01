@@ -131,7 +131,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - DirectX|Win32'">
     <IncludePath>F:\ACWGAC\packages\directxtk_desktop_2017.2022.3.24.2;C:\DirectX SDK\Include;C:\CSLib\inc;G:\DirectX SDK\Include;G:\CSLib\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>F:\ACWGAC\packages\directxtk_desktop_2017.2022.3.24.2;C:\DirectX SDK\Lib\x86;C:\CSLib\lib;G:\DirectX SDK\Lib\x86;G:\CSLib\lib;$(SolutionDir)$(Configuration)\;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
+    <LibraryPath>F:\CanvasDrawingApp-master\packages\directxtk_desktop_2015.2019.2.7.1\lib;C:\DirectX SDK\Lib\x86;C:\CSLib\lib;G:\DirectX SDK\Lib\x86;G:\CSLib\lib;$(SolutionDir)$(Configuration)\;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - DirectX|x64'">
     <IncludePath>F:\ACWGAC\packages\directxtk12_desktop_2019.2023.4.28.1;C:\DirectX SDK\Include;C:\CSLib\inc;G:\DirectX SDK\Include;G:\CSLib\inc;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
@@ -184,6 +184,7 @@
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>BUILD_DIRECTX;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -287,6 +288,7 @@
     <ClCompile Include="ObserverSubject.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="PhysicsSystem.cpp" />
+    <ClCompile Include="RayColliderComponent.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Renderer_DX.cpp" />
@@ -299,6 +301,9 @@
     <ClCompile Include="ShaderObject_GL.cpp" />
     <ClCompile Include="ShaderProgram_GL.cpp" />
     <ClCompile Include="System.cpp" />
+    <ClCompile Include="Task.cpp" />
+    <ClCompile Include="Thread.cpp" />
+    <ClCompile Include="ThreadManager.cpp" />
     <ClCompile Include="UserInputComponent.cpp" />
     <ClCompile Include="VBO.cpp" />
     <ClCompile Include="VBO_DX.cpp" />
@@ -335,6 +340,7 @@
     <ClInclude Include="ObserverSubject.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="PhysicsSystem.h" />
+    <ClInclude Include="RayColliderComponent.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Renderer_DX.h" />
@@ -347,6 +353,9 @@
     <ClInclude Include="ShaderObject_GL.h" />
     <ClInclude Include="ShaderProgram_GL.h" />
     <ClInclude Include="System.h" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="Thread.h" />
+    <ClInclude Include="ThreadManager.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="VBO.h" />
     <ClInclude Include="VBO_DX.h" />

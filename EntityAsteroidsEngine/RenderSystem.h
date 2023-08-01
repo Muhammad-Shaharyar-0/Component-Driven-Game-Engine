@@ -25,7 +25,7 @@ public:
 	void SetRenderer(Renderer* r)		{ _renderer = r; }
 	glm::mat4 GetMVM()			const	{ return _MVM; }
 	void SetMVM(glm::mat4 m)			{ _MVM = m; }
-
+	void SetCamera(CameraComponent* camera);
 	// Functions
 public:
 	virtual void Process(std::vector<GameObject*>& list, double deltaTime);

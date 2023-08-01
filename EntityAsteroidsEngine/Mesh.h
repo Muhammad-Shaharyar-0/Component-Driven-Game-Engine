@@ -38,7 +38,7 @@ public:
 	bool LoadFromFile(std::string filename)		;
 
 	// Loads the Mesh from an existing stream (returns true if OK)
-	bool Mesh::LoadFromStream(std::ifstream& in);
+	bool LoadFromStream(std::ifstream& in);
 
 	// Unlocks the mesh but also deletes the VBO
 	void Reset()								;
