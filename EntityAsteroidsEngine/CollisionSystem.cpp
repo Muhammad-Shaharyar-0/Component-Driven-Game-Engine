@@ -73,10 +73,10 @@ void CollisionSystem::Process(std::vector<GameObject*>& list, double deltaTime)
 
 bool CollisionSystem::CollideWith(const CollisionComponent* collidee, const CollisionComponent* collider)
 {
-	Vector4 diff = collider->GetGameObject()->GetPosition();
+	Datastructers::Vector4 diff = collider->GetGameObject()->GetPosition();
 	diff -= collidee->GetGameObject()->GetPosition();
 
-	return (diff.length() < collidee->GetCollisionRadius() + collider->GetCollisionRadius());
+	return 0;// (diff.length() < collidee->GetCollisionRadius() + collider->GetCollisionRadius());
 }
 
 /******************************************************************************************************************/

@@ -3,65 +3,26 @@
   <ItemGroup>
     <ClCompile Include="AsteroidsGame.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ExplodableComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="GodModeComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="MultiRenderComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Explosion.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="DigitDisplay.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Asteroid.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreDisplay.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Missile.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="ShipControllerComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="DamageMessage.cpp">
       <Filter>Messages</Filter>
     </ClCompile>
     <ClCompile Include="Voxel.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="UFO.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="LetterDisplay.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="WordDisplay.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="GamePlayScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenuScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOverScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="LivesComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="Canvas.cpp">
       <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="VoxelCollisionDetectionComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraControllerComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,65 +31,26 @@
     <ClInclude Include="Components.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="ExplodableComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="GodModeComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="MultiRenderComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Explosion.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="DigitDisplay.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Asteroid.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreDisplay.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Missile.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="ShipControllerComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="DamageMessage.h">
       <Filter>Messages</Filter>
     </ClInclude>
-    <ClInclude Include="UFO.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Voxel.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="LetterDisplay.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="WordDisplay.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="GamePlayScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenuScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOverScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="LivesComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="Canvas.h">
       <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="VoxelCollisionDetectionComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraControllerComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

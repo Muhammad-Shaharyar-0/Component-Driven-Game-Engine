@@ -4,6 +4,7 @@
 #include "Components.h"
 #include "DeadObjectMessage.h"
 #include "Game.h"
+#include "VoxelCollisionDetectionComponent.h"
 
 
 /******************************************************************************************************************/
@@ -26,7 +27,8 @@ Voxel::Voxel(Mesh* mesh)
 	cc->SetCollisionMatrixFlag(CollisionID::UFO_ID);
 	cc->SetCollisionMatrixFlag(CollisionID::Missile_ID);*/
 
-
+	VoxelCollisionDetectionComponent* Cd = new VoxelCollisionDetectionComponent(this);
+	
 	RenderComponent* rc = new RenderComponent(this);
 	rc->SetColour(color);
 	rc->SetMesh(mesh);

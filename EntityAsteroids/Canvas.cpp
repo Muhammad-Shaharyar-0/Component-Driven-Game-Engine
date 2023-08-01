@@ -13,7 +13,7 @@ Canvas::Canvas(int _size) : GameObject("Canvas")
 			
 			Voxel* _voxel = new Voxel(ResourceManager::Instance()->GetMesh("ship"));
 			_voxels.push_back(_voxel);
-			_voxel->SetPosition(Vector4(x, y, 0.0f, 1.0f));
+			_voxel->SetPosition(Datastructers::Vector4(x, y, 0.0f, 1.0f));
 			x = x + 0.021;
 		}
 		y = y + 0.021;
@@ -33,4 +33,5 @@ Canvas::~Canvas()
 
 void Canvas::Update(double deltaTime)
 {
+	GameObject::Update(deltaTime);
 }

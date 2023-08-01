@@ -7,7 +7,7 @@ class PhysicsComponent
 {
 	// Data
 protected:
-	Vector4			_velocity;	// Velocity of object
+	Datastructers::Vector4			_velocity;	// Velocity of object
 	float			_maxSpeed;  // Maximum speed
 
 
@@ -18,8 +18,8 @@ public:
 
 	// Gets/Sets
 public:
-	Vector4 GetVelocity()	const	{ return _velocity; }
-	void SetVelocity(Vector4 v)		{ _velocity = v; }
+	Datastructers::Vector4 GetVelocity()	const	{ return _velocity; }
+	void SetVelocity(Datastructers::Vector4 v)		{ _velocity = v; }
 
 	float GetMaxSpeed()		const	{ return _maxSpeed; }
 	void SetMaxSpeed(float f)		{ _maxSpeed = f; }
@@ -42,6 +42,6 @@ public:
 	// Extra Functions
 public:
 	void LimitToMaximumSpeed(float max);
-	Vector4 GetObjectPosition();
-	void SetObjectPosition(Vector4 v);
+	Datastructers::Vector4 GetObjectPosition();
+	void SetObjectPosition(Datastructers::Vector4 v);
 };

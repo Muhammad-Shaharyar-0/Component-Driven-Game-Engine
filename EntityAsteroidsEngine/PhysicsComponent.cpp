@@ -1,7 +1,6 @@
 #include "PhysicsComponent.h"
 #include "GameObject.h"
 #include "Message.h"
-#include "ThrustMessage.h"
 
 /******************************************************************************************************************/
 // Structors
@@ -47,8 +46,8 @@ void PhysicsComponent::OnMessage(Message* msg)
 {
 	if (msg->GetMessageType() == "thrust")
 	{
-		ThrustMessage* tm = (ThrustMessage*)msg;
-		_velocity += tm->GetThrust();
+		//ThrustMessage* tm = (ThrustMessage*)msg;
+		//_velocity += tm->GetThrust();
 	}
 }
 
@@ -64,19 +63,19 @@ void PhysicsComponent::End()
 
 void PhysicsComponent::LimitToMaximumSpeed(float max)
 {
-	_velocity.limitTo(max);
+	//_velocity.limitTo(max);
 }
 
 /******************************************************************************************************************/
 
-Vector4 PhysicsComponent::GetObjectPosition()
+Datastructers::Vector4 PhysicsComponent::GetObjectPosition()
 {
 	return _owner->GetPosition();
 }
 
 /******************************************************************************************************************/
 
-void PhysicsComponent::SetObjectPosition(Vector4 v)
+void PhysicsComponent::SetObjectPosition(Datastructers::Vector4 v)
 {
 	_owner->SetPosition(v);
 }

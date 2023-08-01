@@ -21,7 +21,7 @@ Renderer_DX::~Renderer_DX()
 
 void Renderer_DX::ClearScreen()
 {
-	_context->ClearRenderTargetView(_backbuffer, D3DXCOLOR(_clearColour.r(), _clearColour.g(), _clearColour.b(), _clearColour.a()));
+	_context->ClearRenderTargetView(_backbuffer, D3DXCOLOR(_clearColour.mColour.X, _clearColour.mColour.Y, _clearColour.mColour.Z, _clearColour.mColour.W));
 }
 
 /******************************************************************************************************************/
@@ -53,8 +53,10 @@ void Renderer_DX::Draw(const Mesh* mesh, glm::mat4 MVM, const Colour& colour)
 
 	UniformBuffer uniforms;
 	memcpy(&uniforms.MVM, &MVM[0][0], sizeof(DirectX::XMFLOAT4X4));
-	colour.copyToArray((float*)&uniforms.Colour);
-
+	uniforms.Colour.x = colour.mColour.X;
+	uniforms.Colour.y = colour.mColour.Y;
+	uniforms.Colour.z = colour.mColour.Z;
+	uniforms.Colour.w = colour.mColour.W;
 	// Need to update uniform buffer here
 	D3D11_MAPPED_SUBRESOURCE ms;
 	_context->Map(_uniformBuffer, NULL, D3D11_MAP_WRITE_DISCARD, NULL, &ms);		// map the buffer

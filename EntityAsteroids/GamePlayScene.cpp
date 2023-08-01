@@ -4,9 +4,6 @@
 #include "RenderSystem.h"
 #include "Asteroid.h"
 #include "Message.h"
-#include "ExplodableComponent.h"
-#include "Explosion.h"
-#include "GameOverScene.h"
 #include "Canvas.h"
 /******************************************************************************************************************/
 // Structors
@@ -43,41 +40,9 @@ void GamePlayScene::Initialise()
 	{
 		_gameObjects.push_back(_canvas->_voxels[i]);
 	}
+	_camera = new Camera();
+	_gameObjects.push_back(_camera);
 
-	/*for (int i = 0; i < 100; i++)
-	{
-		Asteroid* asteroid = new Asteroid(_sceneManager->GetGame()->GetMesh("asteroid"));
-		asteroid->Reset();
-		_gameObjects.push_back(asteroid);
-	}*/
-
-	//for (size_t i = -0.1f; i < 0.1; i=i+0.01)
-	//{
-	//	for (size_t j = -0.1; j <= 0.1; j=j+0.01)
-	//	{
-	//		_ship = new Ship(_sceneManager->GetGame()->GetMesh("ship"));
-	//		_gameObjects.push_back(_ship);
-	//		_ship->SetPosition(Vector4(j, i, 0.0f, 1.0f));
-	//	}
-	//}
-	
-	
-		
-	//_ufo = new UFO(_sceneManager->GetGame()->GetMesh("ufo"));
-	//_gameObjects.push_back(_ufo);
-	//_ufo->SetAlive(false);
-
-	//// Create asteroids
-	//for (int i = 0; i < NUM_ASTEROIDS; i++)
-	//{
-	//	Asteroid* asteroid = new Asteroid(_sceneManager->GetGame()->GetMesh("asteroid"));
-	//	asteroid->Reset();
-	//	_gameObjects.push_back(asteroid);
-	//}
-
-	// Setup Score Display
-	_scoreDisplay = new ScoreDisplay();
-	_gameObjects.push_back(_scoreDisplay);
 
 	// Start all objects to set them up
 	for (int i = 0; i < (int)_gameObjects.size(); i++)
@@ -158,19 +123,6 @@ void GamePlayScene::Update(double deltaTime)
 	}*/
 
 	// Change game state if necessary
-	if (!_canvas->IsAlive())
-	{
-		// Ship is dead
-		if (ExplodableComponent* ec = (ExplodableComponent*)(_canvas->GetComponent("explodable")))
-		{
-			if (!ec->GetExplosion()->IsAlive() && ec->HasExploded())
-			{
-				// Dead
-				_sceneManager->PopScene();
-				_sceneManager->PushScene(new GameOverScene(_scoreDisplay->GetScore()));
-			}
-		}
-	}
 }
 
 /******************************************************************************************************************/
@@ -209,8 +161,6 @@ void GamePlayScene::Reset()
 		_gameObjects[i]->Reset();
 	}
 
-	_ufo->SetAlive(false);
-	_ufoTimer = MAX_UFO_WAIT;
 
 }
 

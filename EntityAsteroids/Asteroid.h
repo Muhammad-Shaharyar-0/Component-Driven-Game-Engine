@@ -38,6 +38,6 @@ public:
 	// Extra Functions
 public:
 	// Reset the asteroid to a random velocity at a given position and a given scale
-	void Spawn(float scale, const Vector4& pos);
+	void Spawn(float scale, const Datastructers::Vector4& pos);
 };
 

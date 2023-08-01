@@ -103,8 +103,8 @@ float Mesh::CalculateMaxSize()
 	for (int i = 0; i < NumVertices(); i++)
 	{
 		Vertex& v = _vertices[i];
-		Vector4 vec(v.x, v.y, v.z, 1);
-		float dist = vec.lengthSquared();
+		Datastructers::Vector4 vec(v.x, v.y, v.z, 1);
+		float dist = vec.Magnitude();
 		if (dist > max)
 		{
 			max = dist;

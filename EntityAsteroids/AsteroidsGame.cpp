@@ -2,7 +2,7 @@
 #include "Components.h"
 #include "Message.h"
 #include "MultiMesh.h"
-#include "MainMenuScene.h"
+#include "GamePlayScene.h"
 #include <sstream>
 
 /******************************************************************************************************************/
@@ -81,7 +81,7 @@ void AsteroidsGame::Initialise(Window* w)
 		i->second->CreateVBO(_renderer);
 	}
 
-	_sceneManager.PushScene(new MainMenuScene());
+	_sceneManager.PushScene(new GamePlayScene());
 }
 
 /******************************************************************************************************************/

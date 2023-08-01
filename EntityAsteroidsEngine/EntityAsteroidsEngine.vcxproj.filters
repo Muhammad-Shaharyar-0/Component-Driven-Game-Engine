@@ -10,9 +10,6 @@
     <ClCompile Include="CollisionMessage.cpp">
       <Filter>Messages</Filter>
     </ClCompile>
-    <ClCompile Include="Colour.cpp">
-      <Filter>Platform Independent</Filter>
-    </ClCompile>
     <ClCompile Include="DeadObjectMessage.cpp">
       <Filter>Messages</Filter>
     </ClCompile>
@@ -56,9 +53,6 @@
     <ClCompile Include="VBO.cpp">
       <Filter>Platform Independent</Filter>
     </ClCompile>
-    <ClCompile Include="Vector4.cpp">
-      <Filter>Platform Independent</Filter>
-    </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>Platform Independent</Filter>
     </ClCompile>
@@ -67,9 +61,6 @@
     </ClCompile>
     <ClCompile Include="Window_GL.cpp">
       <Filter>OpenGL</Filter>
-    </ClCompile>
-    <ClCompile Include="ThrustMessage.cpp">
-      <Filter>Messages</Filter>
     </ClCompile>
     <ClCompile Include="UserInputComponent.cpp">
       <Filter>Components</Filter>
@@ -103,6 +94,30 @@
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Pattern Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Pattern Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector4.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix4x4.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxColliderComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager_DX.cpp">
+      <Filter>DirectX</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,12 +177,6 @@
     <ClInclude Include="VBO.h">
       <Filter>Platform Independent</Filter>
     </ClInclude>
-    <ClInclude Include="Vector4.h">
-      <Filter>Platform Independent</Filter>
-    </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>Platform Independent</Filter>
-    </ClInclude>
     <ClInclude Include="Window.h">
       <Filter>Platform Independent</Filter>
     </ClInclude>
@@ -176,12 +185,6 @@
     </ClInclude>
     <ClInclude Include="Window_GL.h">
       <Filter>OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="ThrustMessage.h">
-      <Filter>Messages</Filter>
-    </ClInclude>
-    <ClInclude Include="UserInputComponent.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsSystem.h">
       <Filter>Systems</Filter>
@@ -216,6 +219,36 @@
     <ClInclude Include="ResourceManager.h">
       <Filter>Pattern Classes</Filter>
     </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Pattern Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixMath.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4x4.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxColliderComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager_DX.h">
+      <Filter>DirectX</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -239,5 +272,11 @@
     <Filter Include="Pattern Classes">
       <UniqueIdentifier>{687c602c-60b0-4998-95f8-ef33b8467c81}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{baa01b70-1852-433e-9dcd-7d5d46a9736e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

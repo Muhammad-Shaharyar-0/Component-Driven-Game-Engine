@@ -8,10 +8,10 @@
 
 RenderComponent::RenderComponent(GameObject* gob)
 	: GameObjectComponent("render", gob),
-	_colour(1.0f,1.0f,1.0f,1.0f),
+	_colour(1,1,1,1),
 	_mesh(NULL)
 {
-
+	
 }
 
 /******************************************************************************************************************/

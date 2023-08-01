@@ -20,7 +20,7 @@ public:
 
 	// Gets/Sets
 public:
-	float GetCollisionRadius()				const	{ return _radius * _owner->GetScale(); }
+	float GetCollisionRadius()				const	{ return _radius ; }
 	void SetCollisionRadius(float r)				{ _radius = r; }
 
 	// Collision matrix

@@ -10,7 +10,7 @@ class Voxel :
 {
 	// Constants
 public:
-	Colour color= Colour(1.0,0.0,0.0);
+	Colour color= Colour(1.0f,0.0f,0.0f,0.0f);
 	float mass=1;
 
 	// Data

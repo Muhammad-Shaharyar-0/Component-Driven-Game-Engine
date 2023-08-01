@@ -31,9 +31,9 @@ public:
 	void ShouldDraw(bool v)							{ _shouldDraw = v; }
 
 	// Get position/scale/angle etc from owner object
-	float GetAngle()						const	{ return _owner->GetAngle(); }
-	float GetScale()						const	{ return _owner->GetScale(); }
-	Vector4 GetPosition()					const	{ return _owner->GetPosition(); }
+	Datastructers::Vector4 GetAngle()						const	{ return _owner->GetAngle(); }
+	Datastructers::Vector4 GetScale()						const	{ return _owner->GetScale(); }
+	Datastructers::Vector4 GetPosition()					const	{ return _owner->GetPosition(); }
 
 
 	// Functions

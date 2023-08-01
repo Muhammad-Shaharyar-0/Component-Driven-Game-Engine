@@ -7,9 +7,7 @@
 // Game classes
 #include "Asteroid.h"
 #include "Canvas.h"
-#include "UFO.h"
-#include "ScoreDisplay.h"
-#include "WordDisplay.h"
+#include "Camera.h"
 
 class GamePlayScene :
 	public Scene
@@ -31,8 +29,7 @@ protected:
 	glm::mat4							_MVM; // ModelView matrix
 
 	Canvas*								_canvas;
-	UFO*								_ufo;
-	ScoreDisplay*						_scoreDisplay;
+	Camera*							    _camera;
 
 	double								_restartCounter;
 	double								_ufoTimer;

@@ -1,9 +1,10 @@
 #pragma once
 #include <map>
 #include <vector>
+#include "Transform.h"
 #include "Vector4.h"
 #include "MathsHelper.h"
-
+#include <string>
 
 // Forward references
 class GameObjectComponent;
@@ -28,13 +29,10 @@ public:
 	// Data
 protected:
 	std::string			_type;			// Type of the object
-	float				_angle;			// Angle of object in degrees
-	float				_scale;			// Scale of the object (1 = normal)
-	Vector4				_position;		// Position of object's origin
-	bool				_alive;			// Alive flag; when false, is not updated
+	Transform			transform;
 	bool				_isCanvas=false;			// Alive flag; when false, is not updated
 	bool				_deleteFlag;	// Set when you want this game object to be deleted by the game
-
+	bool _alive;
 	// Components
 	ComponentMap		_components;
 
@@ -56,14 +54,14 @@ private:
 
 	// Gets/sets
 public:
-	float GetAngle()													const	{ return _angle; }
-	void SetAngle(float v)														{ _angle = v;  }
+	Datastructers::Vector4 GetAngle()													const	{ return transform.mRotation; }
+	void SetAngle(Datastructers::Vector4 v)														{ transform.mRotation = v;  }
 
-	float GetScale()													const	{ return _scale; }
-	void SetScale(float v)														{ _scale = v; }
+	Datastructers::Vector4 GetScale()													const	{ return transform.mScale; }
+	void SetScale(Datastructers::Vector4 v)														{ transform.mScale = v; }
 
-	Vector4 GetPosition()												const	{ return _position; }
-	void SetPosition(Vector4 v)													{ _position = v; }
+	Datastructers::Vector4 GetPosition()												const	{ return transform.mTranslation; }
+	void SetPosition(Datastructers::Vector4 v)													{ transform.mTranslation = v; }
 
 	bool IsAlive()														const	{ return _alive; }
 	void SetAlive(bool v)														{ _alive = v; }
