@@ -26,9 +26,10 @@ Voxel::Voxel(Mesh* mesh)
 	//pc->SetMaxSpeed(MAX_SPEED);
 
 	cc = new BoxColliderComponent(this);
-	cc->SetCollisionID(CollisionID::Voxel);
+	cc->SetCollisionID(CollisionID::VoxelCollider);
 	cc->SetCollisionMatrixFlag(CollisionID::Ray);
-
+	initialcolor = color;
+	initialmass = mass;
 	//VoxelCollisionDetectionComponent* Cd = new VoxelCollisionDetectionComponent(this);
 	
 	rc = new RenderComponent(this);
@@ -84,7 +85,6 @@ void Voxel::OnMessage(Message* msg)
 		//	Message msg("state=dead");
 		//	Game::TheGame->ListenToMessage(&msg);
 		//}
-	        RenderComponent * rc = (RenderComponent*)GetComponent("render");
 			//rc->ShouldDraw(false);
 			//_alive = false;
 			mass++;
@@ -108,21 +108,12 @@ Datastructers::Vector4 Voxel::LerpColors(const Datastructers::Vector4& color1, c
 
 void Voxel::Reset()
 {
-	//_alive = true;
 
-	//RenderComponent* rc = (RenderComponent*)GetComponent("render");
-	//rc->ShouldDraw(true);
-
-	//PhysicsComponent* pc = (PhysicsComponent*)GetComponent("physics");
-	//pc->SetVelocity(Vector4(0.0f, 0.0f, 0.0f, 0.0f));
-
-	//GodModeComponent* gc = (GodModeComponent*)GetComponent("godmode");
-	//gc->SetGodMode(false);
-
-	//ShipControllerComponent* sc = (ShipControllerComponent*)GetComponent("input");
-	//sc->Reset();
-
-	//_position = Vector4(0.0f, 0.0f, 0.0f, 1.0f);
+	color = initialcolor;
+	mass = initialmass;
+	rc->SetColour(color);
+	rc->ShouldDraw(true);
+	_alive = true;
 }
 
 /******************************************************************************************************************/

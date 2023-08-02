@@ -3,6 +3,6 @@
 // Used to decide what collides with what
 enum CollisionID
 {
-	Voxel			= 1,
+	VoxelCollider			= 1,
 	Ray		= 2,
 };

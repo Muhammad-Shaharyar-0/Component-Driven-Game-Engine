@@ -20,6 +20,7 @@ public:
 
 	// Functions
 public:
+	virtual void Reset();
 	virtual void Update(double deltaTime);
 
 

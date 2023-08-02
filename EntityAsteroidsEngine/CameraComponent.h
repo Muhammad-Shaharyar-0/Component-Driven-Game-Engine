@@ -24,6 +24,8 @@ public:
 	CameraComponent(GameObject* gob);
 	virtual ~CameraComponent();
 
+	void Reset();
+
 	// Setup function -- called when owner object is initialised (using its own Start method)
 	virtual void Start();
 

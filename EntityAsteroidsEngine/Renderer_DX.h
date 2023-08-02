@@ -1,13 +1,18 @@
 #pragma once
 #if BUILD_DIRECTX
-
+#include <windows.h>
 #include <d3d11.h>
 #include <d3dx11.h>
 #include <d3dx10.h>
 #include <DirectXMath.h>
+#include <array>
+#include <chrono>
 #include "Renderer.h"
 #include "CameraComponent.h"
-
+#include "FrequencyValues.h"
+#include "ThreadManager.h"
+#include "ResourceManager.h"
+#include "gui.h"
 
 typedef struct ConstantBuffer
 {
@@ -36,6 +41,25 @@ protected:
 	ID3D11Buffer*			_ConstantBuffer;			// Stores the MVM and colour
 	HWND					_hWnd;					// Window handle
 	ConstantBuffer mCB{};
+	Mesh* currentMesh=nullptr;
+	std::shared_ptr<ThreadManager> mThreadManager = ThreadManager::Instance();
+	std::shared_ptr<ResourceManager> mResourceManager = ResourceManager::Instance();
+	
+	std::chrono::nanoseconds mDeltaTime{};
+	std::chrono::high_resolution_clock::time_point mStartTime;
+	std::chrono::high_resolution_clock::time_point mCurrentTime;
+	std::chrono::high_resolution_clock::time_point mPreviousTime;
+
+	int mActualFrequency{};
+	double mAverageDeltaTime = 0;
+	double mTargetDeltaTime = 0;
+	std::array<double, 50> mLast50Frames;
+	double sleepTime;
+	std::mutex mx;
+
+	GUI* g = &GUI::GetInstance();
+
+
 	// Structors
 public:
 	Renderer_DX(HWND hWnd);
@@ -51,9 +75,12 @@ public:
 
 	// Functions
 public:
+
 	virtual void ClearScreen();
 	virtual void Destroy();
-	virtual void Draw(const Mesh* mesh, glm::mat4 MVM, const Colour& colour);
+	virtual void Draw(Mesh* mesh, glm::mat4 MVM, const Colour& colour);
+	void CalculateFreq();
+	void RenderLoop();
 	void SetViewProj(CameraComponent* camera);
 	virtual void Initialise(int width, int height);
 	virtual void SwapBuffers();

@@ -18,9 +18,6 @@
     <ClCompile Include="Camera.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="VoxelCollisionDetectionComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="CameraControllerComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -45,9 +42,6 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="VoxelCollisionDetectionComponent.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="CameraControllerComponent.h">
       <Filter>Components</Filter>

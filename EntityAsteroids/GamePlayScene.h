@@ -34,10 +34,7 @@ protected:
 	Canvas*								_canvas;
 	Camera*							    _camera;
 	int mRayID;
-	double								_restartCounter;
-	double								_ufoTimer;
-	int									_minAsteroids;
-	
+	bool renderProcessStarted = false;
 	// Structors
 public:
 	GamePlayScene();

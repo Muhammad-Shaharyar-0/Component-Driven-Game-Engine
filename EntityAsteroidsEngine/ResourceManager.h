@@ -2,10 +2,12 @@
 #include <memory>
 #include <map>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class Mesh;
+class GameObject;
 typedef std::map<std::string, Mesh*> MeshMap;
 typedef std::map<std::string, Mesh*>::iterator MeshMapIterator;
 
@@ -20,6 +22,7 @@ public:
 
 	~ResourceManager();
 	MeshMap							_meshes;			// The map of meshes
+	std::vector<GameObject*>		_gameObjects;
 	Mesh* GetMesh(std::string name);
 	void AddMesh(std::string name, Mesh* mesh) { _meshes[name] = mesh; }
 

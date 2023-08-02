@@ -18,6 +18,12 @@
 #pragma comment (lib, "d3d11.lib")
 #pragma comment (lib, "d3dx11.lib")
 #pragma comment (lib, "d3dx10.lib")
+#include "../EntityAsteroidsEngine/imgui/imgui.h"
+#include "../EntityAsteroidsEngine/imgui/imgui_impl_dx9.h"
+#include "../EntityAsteroidsEngine/imgui/imgui_impl_win32.h"
+#include "imgui/imgui_impl_dx11.h"
+#include <d3d11.h>
+#include <tchar.h>
 
 // DirectX window
 class Window_DX :

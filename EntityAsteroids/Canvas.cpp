@@ -1,6 +1,8 @@
 #include "Canvas.h"
 #include "ResourceManager.h"
 #include "Components.h"
+#include "gui.h"
+
 Canvas::Canvas(int _size) : GameObject("Canvas")
 {
 	size = _size;
@@ -37,4 +39,12 @@ Canvas::~Canvas()
 void Canvas::Update(double deltaTime)
 {
 	GameObject::Update(deltaTime);
+	int mass = 0;;
+	for each (Voxel* var in _voxels)
+	{
+		mass = mass + var->mass;
+	}
+	GUI::GetInstance().AddIntVariable("Total Mass", mass);
+	GUI::GetInstance().AddIntVariable("Total Mass PCS", mass);
+
 }

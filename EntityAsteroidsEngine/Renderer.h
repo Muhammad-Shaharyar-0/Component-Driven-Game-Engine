@@ -34,7 +34,7 @@ public:
 public:
 	virtual void ClearScreen() = 0;
 
-	virtual void Draw(const Mesh* mesh, glm::mat4 MVM, const Colour& colour) = 0;
+	virtual void Draw(Mesh* mesh, glm::mat4 MVM, const Colour& colour) = 0;
 	virtual void Draw(RenderComponent* gob, glm::mat4 MVM);
 	virtual void SetViewProj(CameraComponent* camera);
 	virtual void Destroy() = 0;

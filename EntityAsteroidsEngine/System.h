@@ -21,6 +21,7 @@ public:
 	// Functions
 public:
 	virtual void Process(std::vector<GameObject*>& list, double deltaTime) = 0;
+	
 
 };
 

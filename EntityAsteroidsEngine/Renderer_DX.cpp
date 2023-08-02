@@ -49,11 +49,12 @@ void Renderer_DX::Destroy()
 
 /******************************************************************************************************************/
 
-void Renderer_DX::Draw(const Mesh* mesh, glm::mat4 MVM, const Colour& colour)
-{
-	MVM = glm::transpose(MVM);
 
-	
+void Renderer_DX::Draw(Mesh* mesh, glm::mat4 MVM, const Colour& colour)
+{
+
+
+	MVM = glm::transpose(MVM);
 	memcpy(&mCB.MVM, &MVM[0][0], sizeof(DirectX::XMFLOAT4X4));
 	memcpy(&mCB.mWorld, &MVM[0][0], sizeof(DirectX::XMFLOAT4X4));
 	mCB.Colour.x = colour.mColour.X;
@@ -69,6 +70,9 @@ void Renderer_DX::Draw(const Mesh* mesh, glm::mat4 MVM, const Colour& colour)
 	_context->PSSetConstantBuffers(0, 1, &_ConstantBuffer);
 
 	mesh->GetVBO()->Draw(this);
+	g->BeginFrame();
+	g->EndFrame();
+
 }
 
 
@@ -162,6 +166,11 @@ void Renderer_DX::Initialise(int width, int height)
 
 	// Initialise shaders
 	InitialiseShaders();
+	
+		g->Initialize(_hWnd, _device, _context);
+
+
+
 }
 
 /******************************************************************************************************************/

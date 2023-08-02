@@ -15,6 +15,8 @@ class Voxel :
 public:
 	Colour color= Colour(1.0f,0.0f,0.0f,0.0f);
 	Colour stolencolor = Colour(0.0f, 1.0f, 0.0f, 0.0f);
+	Colour initialcolor = Colour(1.0f, 0.0f, 0.0f, 0.0f);
+	float initialmass;
 	float mass=1;
 	float size;
 

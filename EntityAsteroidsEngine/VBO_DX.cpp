@@ -53,11 +53,9 @@ void VBO_DX::Draw(Renderer* renderer)
 	UINT offset = 0;
 	rendererDX->GetContext()->IASetVertexBuffers(0, 1, &_vbo, &stride, &offset);
 
-	// select which primtive type we are using
-	rendererDX->GetContext()->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
+	
 	// draw the vertex buffer to the back buffer
-	rendererDX->GetContext()->Draw(_numVertices, 0);
+	rendererDX->GetContext()->Draw(_numVertices,0);
 
 }
 

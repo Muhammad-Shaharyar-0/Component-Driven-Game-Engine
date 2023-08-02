@@ -283,7 +283,6 @@
     <ClInclude Include="DamageMessage.h" />
     <ClInclude Include="GamePlayScene.h" />
     <ClInclude Include="Voxel.h" />
-    <ClInclude Include="VoxelCollisionDetectionComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AsteroidsGame.cpp" />
@@ -294,7 +293,6 @@
     <ClCompile Include="GamePlayScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Voxel.cpp" />
-    <ClCompile Include="VoxelCollisionDetectionComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader.frag" />

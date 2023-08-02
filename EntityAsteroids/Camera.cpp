@@ -13,10 +13,14 @@ Camera::Camera() : GameObject("Camera")
 
 Camera::~Camera()
 {
-	
-	
+
 }
 
+void Camera::Reset()
+{
+	_alive = true;
+	_camera->Reset();
+}
 void Camera::Update(double deltaTime)
 {
 	GameObject::Update(deltaTime);

@@ -5,8 +5,9 @@
 #include "Asteroid.h"
 #include "Message.h"
 #include "Canvas.h"
-
-
+#include "Voxel.h"
+#include "ResourceManager.h"
+#include "GUI.h"
 
 using namespace Datastructers;
 /******************************************************************************************************************/
@@ -14,9 +15,6 @@ using namespace Datastructers;
 /******************************************************************************************************************/
 
 GamePlayScene::GamePlayScene()
-	: _restartCounter(0),
-	  _ufoTimer(MAX_UFO_WAIT),
-	  _minAsteroids(NUM_ASTEROIDS)
 {
 
 }
@@ -38,7 +36,7 @@ void GamePlayScene::Initialise()
 	// Setup Objects
 
 	// Create canvas
-	_canvas = new Canvas(50);
+	_canvas = new Canvas(25);
 	_gameObjects.push_back(_canvas);
 	for (size_t i = 0; i < _canvas->_voxels.size() ; i++)
 	{
@@ -59,6 +57,12 @@ void GamePlayScene::Initialise()
 	{
 		_gameObjects[i]->Start();
 	}
+	ResourceManager::Instance()->_gameObjects = _gameObjects;
+	GUI::GetInstance().AddIntVariable("Number of Player", 1);
+	GUI::GetInstance().AddIntVariable("Voxels", _canvas->_voxels.size());
+	GUI::GetInstance().AddIntVariable("Total Mass", _canvas->_voxels.size());
+	GUI::GetInstance().AddIntVariable("Total Mass PCS", _canvas->_voxels.size());
+
 
 }
 
@@ -72,18 +76,11 @@ void GamePlayScene::OnKeyboard(int key, bool down)
 	// Switch key presses
 	switch (key)
 	{
-	case 80: // P = pause
-		// Put code here to add a Pause screen
-		break;
+
 	case 82: // R
 		Reset();
 		break;
-	case 85: // U
-		_ufoTimer = 0;
-		break;
-	case 27: // Escape
-		_sceneManager->PopScene();
-		break;
+
 	}
 }
 
@@ -93,10 +90,12 @@ void GamePlayScene::OnKeyboard(int key, bool down)
 void GamePlayScene::Update(double deltaTime)
 {
 	Scene::Update(deltaTime);
+	mInputManager->Update();
+	if (mInputManager->KeyHeld(KEY::KEY_R))
+	{
+		Reset();
+	}
 
-
-	// Execute all the tasks in separate threads
-	//MyThreadManager::GetInstance().ExecuteTasks();
 
 	_physicsSystem.Process(_gameObjects, deltaTime);
 	_collisionSystem.Process(_gameObjects, deltaTime);
@@ -109,7 +108,7 @@ void GamePlayScene::Update(double deltaTime)
 			_gameObjects[i]->Update(deltaTime);
 		}
 	}
-	mInputManager->Update();
+
 
 	//Left click to cast ray at mouse position
 	if (mInputManager->KeyHeld(KEY::MOUSE_BUTTON_LEFT))
@@ -123,7 +122,7 @@ void GamePlayScene::Update(double deltaTime)
 		//Ray->AddComponent(new RayColliderComponent(Ray, _camera->_camera->mEye, dir));
 		RayColliderComponent* rc = new RayColliderComponent(Ray, _camera->_camera->mEye, dir);
 		rc->SetCollisionID(CollisionID::Ray);
-		rc->SetCollisionMatrixFlag(CollisionID::Voxel);
+		rc->SetCollisionMatrixFlag(CollisionID::VoxelCollider);
 		Ray->AddComponent(rc);
 		_gameObjects.push_back(Ray);
 	}
@@ -140,35 +139,48 @@ void GamePlayScene::Render(RenderSystem* renderer)
 		_camera->_camera->isCameraChanged = false;
 		renderer->SetCamera(_camera->_camera);
 	}
-	
-	renderer->Process(_gameObjects, 0);
+	renderer->Process(_gameObjects,0);
+
 }
 
 /******************************************************************************************************************/
 
 void GamePlayScene::Reset()
 {
-	int numAsteroidsFound = 0;
-	_minAsteroids = NUM_ASTEROIDS;
+	//int numAsteroidsFound = 0;
+	//_minAsteroids = NUM_ASTEROIDS;
 
-	for (int i = 0; i < (int)_gameObjects.size(); i++)
+	//for (int i = 0; i < (int)_gameObjects.size(); i++)
+	//{
+	//	// Delete excess asteroids
+	//	if (_gameObjects[i]->GetType() == "Voxel")
+	//	{
+	//		numAsteroidsFound++;
+	//		if (numAsteroidsFound > _minAsteroids)
+	//		{
+	//			delete _gameObjects[i];
+	//			_gameObjects.erase(_gameObjects.begin() + i);
+	//			i--;
+	//			continue;
+	//		}
+	//	}
+
+	//	// Reset
+	//	_gameObjects[i]->Reset();
+	//}
+
+	for each (Voxel* var in _canvas->_voxels)
 	{
-		// Delete excess asteroids
-		if (_gameObjects[i]->GetType() == "asteroid")
-		{
-			numAsteroidsFound++;
-			if (numAsteroidsFound > _minAsteroids)
-			{
-				delete _gameObjects[i];
-				_gameObjects.erase(_gameObjects.begin() + i);
-				i--;
-				continue;
-			}
-		}
-
-		// Reset
-		_gameObjects[i]->Reset();
+		var->Reset();
 	}
+	_camera->_camera->mWidth = Game::TheGame->Width();
+	_camera->_camera->mHeight = Game::TheGame->Height();
+	float aspectRatio = _camera->_camera->mWidth / _camera->_camera->mHeight;
+	_camera->SetPosition(_camera->_camera->mEye);
+	_camera->_camera->mView = LookAtLH(_camera->_camera->mEye, _camera->_camera->mLookAt, _camera->_camera->mUp);
+	_camera->_camera->mProj = ProjectionLH(1.0472f, aspectRatio, _camera->_camera->mNear, _camera->_camera->mFar);
+	_camera->_camera->isCameraChanged = true;
+
 
 
 }
