@@ -17,9 +17,6 @@
     <ClCompile Include="KeyPressMessage.cpp">
       <Filter>Messages</Filter>
     </ClCompile>
-    <ClCompile Include="LifeTimerComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>Platform Independent</Filter>
     </ClCompile>
@@ -61,9 +58,6 @@
     </ClCompile>
     <ClCompile Include="Window_GL.cpp">
       <Filter>OpenGL</Filter>
-    </ClCompile>
-    <ClCompile Include="UserInputComponent.cpp">
-      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsSystem.cpp">
       <Filter>Systems</Filter>
@@ -122,15 +116,6 @@
     <ClCompile Include="RayColliderComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Thread.cpp">
-      <Filter>Helpers</Filter>
-    </ClCompile>
-    <ClCompile Include="ThreadManager.cpp">
-      <Filter>Pattern Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Task.cpp">
-      <Filter>Helpers</Filter>
-    </ClCompile>
     <ClCompile Include="imgui\imgui.cpp">
       <Filter>IMGUI</Filter>
     </ClCompile>
@@ -161,14 +146,6 @@
     <ClCompile Include="gui.cpp">
       <Filter>IMGUI</Filter>
     </ClCompile>
-    <ClCompile Include="NetworkManager.cpp">
-      <Filter>Pattern Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="SocketListner.cpp" />
-    <ClCompile Include="SocketStreamer.cpp" />
-    <ClCompile Include="Socket.cpp">
-      <Filter>Helpers</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -190,9 +167,6 @@
     <ClInclude Include="GameObjectComponent.h" />
     <ClInclude Include="KeyPressMessage.h">
       <Filter>Messages</Filter>
-    </ClInclude>
-    <ClInclude Include="LifeTimerComponent.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Platform Independent</Filter>
@@ -302,15 +276,6 @@
     <ClInclude Include="RayColliderComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Thread.h">
-      <Filter>Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="ThreadManager.h">
-      <Filter>Pattern Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Task.h">
-      <Filter>Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="FrequencyValues.h">
       <Filter>Helpers</Filter>
     </ClInclude>
@@ -346,17 +311,6 @@
     </ClInclude>
     <ClInclude Include="gui.h">
       <Filter>IMGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="NetworkManager.h">
-      <Filter>Pattern Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="SocketListner.h" />
-    <ClInclude Include="SocketStreamer.h" />
-    <ClInclude Include="Socket.h">
-      <Filter>Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="IPAddress.h">
-      <Filter>Helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

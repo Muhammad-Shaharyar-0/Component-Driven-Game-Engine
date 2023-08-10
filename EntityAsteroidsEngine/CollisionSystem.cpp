@@ -77,6 +77,20 @@ void CollisionSystem::Process(std::vector<GameObject*>& list, double deltaTime)
 	}
 }
 
+void CalculateMinMaxT(float origin, float invDirection, float minBound, float maxBound, float& tMin, float& tMax)
+{
+	if (invDirection >= 0)
+	{
+		tMin = (minBound - origin) * invDirection;
+		tMax = (maxBound - origin) * invDirection;
+	}
+	else
+	{
+		tMin = (maxBound - origin) * invDirection;
+		tMax = (minBound - origin) * invDirection;
+	}
+}
+
 void CollisionSystem::RayToCubeCollision(RayColliderComponent* collidiee, std::vector<GameObject*>& list)
 {
 	RayColliderComponent* rayCollider = collidiee;
@@ -93,79 +107,32 @@ void CollisionSystem::RayToCubeCollision(RayColliderComponent* collidiee, std::v
 		{
 			//check mouse ray against all collidables
 			BoxColliderComponent* boxCollider = cc2;
-			
-			float txMin;
-			float txMax;
+			Datastructers::Vector4 origin = rayCollider->mOrigin;
 
-			//check x bounds
-			if (invDirection.X >= 0)
-			{
-				txMin = (boxCollider->mMinBounds.X - rayCollider->mOrigin.X) * invDirection.X;
-				txMax = (boxCollider->mMaxBounds.X - rayCollider->mOrigin.X) * invDirection.X;
-			}
-			else
-			{
-				txMin = (boxCollider->mMaxBounds.X - rayCollider->mOrigin.X) * invDirection.X;
-				txMax = (boxCollider->mMinBounds.X - rayCollider->mOrigin.X) * invDirection.X;
-			}
+			float txMin, txMax;
+			float tyMin, tyMax;
+			float tzMin, tzMax;
 
-			float highestMin;
-			float lowestMax;
+			// Calculate t values for x-axis
+			CalculateMinMaxT(origin.X, invDirection.X, boxCollider->mMinBounds.X, boxCollider->mMaxBounds.X, txMin, txMax);
 
-			float tyMin;
-			float tyMax;
+			// Calculate t values for y-axis
+			CalculateMinMaxT(origin.Y, invDirection.Y, boxCollider->mMinBounds.Y, boxCollider->mMaxBounds.Y, tyMin, tyMax);
 
-			//check y bounds
-			if (invDirection.Y >= 0)
-			{
-				tyMin = (boxCollider->mMinBounds.Y - rayCollider->mOrigin.Y) * invDirection.Y;
-				tyMax = (boxCollider->mMaxBounds.Y - rayCollider->mOrigin.Y) * invDirection.Y;
-			}
-			else
-			{
-				tyMin = (boxCollider->mMaxBounds.Y - rayCollider->mOrigin.Y) * invDirection.Y;
-				tyMax = (boxCollider->mMinBounds.Y - rayCollider->mOrigin.Y) * invDirection.Y;
-			}
-
-			//if no hit then continue
+			// If no hit then continue
 			if (txMin > tyMax || tyMin > txMax)
 				continue;
 
-			//update highest min and lowest max
-			if (tyMin > txMin)
-				highestMin = tyMin;
-			else
-				highestMin = txMin;
+			// Update highest min and lowest max
+			float highestMin = (tyMin > txMin) ? tyMin : txMin;
+			float lowestMax = (tyMax < txMax) ? tyMax : txMax;
 
-			if (tyMax < txMax)
-				lowestMax = tyMax;
-			else
-				lowestMax = txMax;
+			// Calculate t values for z-axis
+			CalculateMinMaxT(origin.Z, invDirection.Z, boxCollider->mMinBounds.Z, boxCollider->mMaxBounds.Z, tzMin, tzMax);
 
-			float tzMin;
-			float tzMax;
-
-			//check z bounds
-			if (invDirection.Z >= 0)
-			{
-				tzMin = (boxCollider->mMinBounds.Z - rayCollider->mOrigin.Z) * invDirection.Z;
-				tzMax = (boxCollider->mMaxBounds.Z - rayCollider->mOrigin.Z) * invDirection.Z;
-			}
-			else
-			{
-				tzMin = (boxCollider->mMaxBounds.Z - rayCollider->mOrigin.Z) * invDirection.Z;
-				tzMax = (boxCollider->mMinBounds.Z - rayCollider->mOrigin.Z) * invDirection.Z;
-			}
-
-			//if no hit then continue
+			// If no hit then continue
 			if (highestMin > tzMax || tzMin > lowestMax)
 				continue;
-
-			//update highest min and lowest max
-			if (tzMin > highestMin)
-				highestMin = tzMin;
-			if (tzMax < lowestMax)
-				lowestMax = tzMax;
 
 			CollisionMessage msg(collidiee->GetGameObject(), collider);
 			collidiee->GetGameObject()->SetAlive(false);

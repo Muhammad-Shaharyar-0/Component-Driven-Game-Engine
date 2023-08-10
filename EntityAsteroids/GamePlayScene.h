@@ -24,7 +24,7 @@ public:
 	std::shared_ptr<InputManager_DX> mInputManager = InputManager_DX::Instance();
 	// Data
 protected:
-	PhysicsSystem						_physicsSystem;
+	
 	CollisionSystem						_collisionSystem;
 
 	// Matrices

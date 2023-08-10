@@ -97,7 +97,7 @@ void GamePlayScene::Update(double deltaTime)
 	}
 
 
-	_physicsSystem.Process(_gameObjects, deltaTime);
+	//_physicsSystem.Process(_gameObjects, deltaTime);
 	_collisionSystem.Process(_gameObjects, deltaTime);
 
 	// Perform legacy update on game objects (in theory, should be phased out altogether)

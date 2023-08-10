@@ -10,7 +10,6 @@
 #include "Renderer.h"
 #include "CameraComponent.h"
 #include "FrequencyValues.h"
-#include "ThreadManager.h"
 #include "ResourceManager.h"
 #include "gui.h"
 
@@ -42,20 +41,19 @@ protected:
 	HWND					_hWnd;					// Window handle
 	ConstantBuffer mCB{};
 	Mesh* currentMesh=nullptr;
-	std::shared_ptr<ThreadManager> mThreadManager = ThreadManager::Instance();
 	std::shared_ptr<ResourceManager> mResourceManager = ResourceManager::Instance();
 	
-	std::chrono::nanoseconds mDeltaTime{};
-	std::chrono::high_resolution_clock::time_point mStartTime;
-	std::chrono::high_resolution_clock::time_point mCurrentTime;
-	std::chrono::high_resolution_clock::time_point mPreviousTime;
+	//std::chrono::nanoseconds mDeltaTime{};
+	//std::chrono::high_resolution_clock::time_point mStartTime;
+	//std::chrono::high_resolution_clock::time_point mCurrentTime;
+	//std::chrono::high_resolution_clock::time_point mPreviousTime;
 
-	int mActualFrequency{};
-	double mAverageDeltaTime = 0;
-	double mTargetDeltaTime = 0;
-	std::array<double, 50> mLast50Frames;
-	double sleepTime;
-	std::mutex mx;
+	//int mActualFrequency{};
+	//double mAverageDeltaTime = 0;
+	//double mTargetDeltaTime = 0;
+	//std::array<double, 50> mLast50Frames;
+	//double sleepTime;
+	//std::mutex mx;
 
 	GUI* g = &GUI::GetInstance();
 

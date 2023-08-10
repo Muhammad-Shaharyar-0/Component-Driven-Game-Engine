@@ -1,4 +1,4 @@
-#include "AsteroidsGame.h"
+#include "CanvasGame.h"
 
 static const int		SCREEN_WIDTH  = 512;
 static const int		SCREEN_HEIGHT = 512;
@@ -16,7 +16,6 @@ static const int		SCREEN_HEIGHT = 512;
 #include <d3d11.h>
 #include <d3dx11.h>
 #include <d3dx10.h>
-#include <ThreadManager.h>
 #include "Window_DX.h"
 
 // include the Direct3D Library file
@@ -34,10 +33,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	int nCmdShow)
 {
 	// Create the Game object
-	AsteroidsGame game;
+	CanvasGame game;
 
-	auto threadManager = ThreadManager::Instance();
-	threadManager->CreateThreads();
 	// Create a Window object
 	Window_DX application(&game, SCREEN_WIDTH, SCREEN_HEIGHT, hInstance, nCmdShow);
 

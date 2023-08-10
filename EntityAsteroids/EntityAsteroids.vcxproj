@@ -274,7 +274,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AsteroidsGame.h" />
+    <ClInclude Include="CanvasGame.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraControllerComponent.h" />
     <ClInclude Include="Canvas.h" />
@@ -285,7 +285,7 @@
     <ClInclude Include="Voxel.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AsteroidsGame.cpp" />
+    <ClCompile Include="CanvasGame.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraControllerComponent.cpp" />
     <ClCompile Include="Canvas.cpp" />

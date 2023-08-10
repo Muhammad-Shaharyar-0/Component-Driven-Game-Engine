@@ -3,7 +3,6 @@
 #include <vector>
 #include <string>
 #include <map>
-#include "ThreadManager.h"
 // Forward declaration of ImGuiContext
 struct ImGuiContext;
 
@@ -13,7 +12,7 @@ private:
     GUI(); // Private constructor to prevent direct instantiation
     GUI(const GUI&) = delete; // Disable copy constructor
     GUI& operator=(const GUI&) = delete; // Disable assignment operator
-    std::shared_ptr<ThreadManager> mThreadManager = ThreadManager::Instance();
+
 public:
     ~GUI();
 
