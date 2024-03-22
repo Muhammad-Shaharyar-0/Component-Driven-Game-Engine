@@ -1,7 +1,23 @@
-Design and implement a  game engine and demonstrate its effectiveness by developing a game using this engine.
+# Component-Driven Game Engine
 
-Created a simple "game" using my game engine. The style of the game is a voxel-based sketchpad.
+## Overview
 
+This repository showcases a Component-Driven Game Engine, designed to illustrate the efficiency and flexibility of component-based architecture in game development. It features a voxel-based sketchpad game, demonstrating the engine's capability in managing a simple yet interactive 3D environment.
 
-A canvas consisting of a large number of voxels (3D pixels), a minimum of which is an arrangement of 512 x 512 x 1 voxels, arranged in a regular grid.
-Where the user can paint on these voxels
+## Key Features
+
+- **Component-Based Architecture**: Enhances modularity and reusability.
+- **Voxel-Based Sketchpad Game**: Demonstrates engine functionality through a creative voxel painting experience.
+- **Efficient Rendering**: Optimized for performance in 3D environments.
+
+## Technologies Used
+
+- C++
+- C
+
+## Getting Started
+
+### Prerequisites
+
+- C++17 compiler
+- Any compatible IDE or editor
